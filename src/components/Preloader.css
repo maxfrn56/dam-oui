@@ -1,0 +1,60 @@
+.preloader {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: grid;
+  place-items: center;
+}
+
+.preloader__panels {
+  position: absolute;
+  inset: 0;
+  display: flex;
+}
+
+.preloader__panel {
+  flex: 1;
+  background: var(--ink);
+}
+
+.preloader__inner {
+  position: relative;
+  display: grid;
+  justify-items: center;
+  gap: 1.2rem;
+  color: var(--sand);
+}
+
+.preloader__mark {
+  width: clamp(90px, 12vw, 130px);
+  stroke: var(--sand);
+  stroke-width: 2;
+  stroke-linecap: round;
+}
+
+.preloader__word {
+  display: flex;
+  overflow: hidden;
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(2rem, 5vw, 3.4rem);
+  letter-spacing: 0.14em;
+}
+
+.preloader__word span {
+  display: inline-block;
+}
+
+.preloader__place {
+  color: var(--stone);
+}
+
+.preloader__counter {
+  position: absolute;
+  bottom: 2rem;
+  right: var(--gutter);
+  font-family: var(--font-display);
+  font-size: clamp(1.4rem, 3vw, 2.2rem);
+  color: var(--stone);
+  font-variant-numeric: tabular-nums;
+}
