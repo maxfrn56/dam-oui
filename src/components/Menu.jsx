@@ -1,14 +1,25 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import { MENU } from "../data.js";
+import { getMenu } from "../lib/api.js";
 import "./Menu.css";
 
 export default function Menu() {
   const root = useRef(null);
   const preview = useRef(null);
   const [previewSrc, setPreviewSrc] = useState(null);
+
+  /* La carte vit sur l'API (éditable depuis /admin) ;
+     les données statiques servent de secours */
+  const [menu, setMenu] = useState(MENU);
+
+  useEffect(() => {
+    getMenu()
+      .then(setMenu)
+      .catch(() => {});
+  }, []);
 
   const hidePreview = () => {
     gsap.to(preview.current, { opacity: 0, scale: 0.85, rotate: 3, duration: 0.4, ease: "power3.in" });
@@ -49,7 +60,7 @@ export default function Menu() {
         onLeaveBack: hidePreview,
       });
     },
-    { scope: root }
+    { scope: root, dependencies: [menu], revertOnUpdate: true }
   );
 
   useGSAP(
@@ -80,16 +91,16 @@ export default function Menu() {
         ))}
       </h2>
 
-      <p className="menu__note">{MENU.note}</p>
+      <p className="menu__note">{menu.note}</p>
 
       <div className="menu__list">
-        {MENU.sections.map((section) => (
+        {menu.sections.map((section) => (
           <div className="menu__group" key={section.title}>
             <h3 className="menu__group-title">{section.title}</h3>
-            {section.items.map((item) => (
+            {section.items.map((item, i) => (
               <div
                 className="menu__row"
-                key={item.name}
+                key={`${section.title}-${i}`}
                 onMouseEnter={() => showPreview(item.image)}
                 onMouseLeave={hidePreview}
               >

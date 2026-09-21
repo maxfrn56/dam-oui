@@ -1,0 +1,275 @@
+.admin {
+  min-height: 100svh;
+  background: var(--sand);
+  padding: clamp(1.5rem, 4vw, 4rem);
+  max-width: 980px;
+  margin: 0 auto;
+  display: grid;
+  gap: 2.5rem;
+  align-content: start;
+  cursor: auto;
+}
+
+.admin h1 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(1.8rem, 4vw, 2.6rem);
+}
+
+.admin h2 {
+  font-family: var(--font-script);
+  font-weight: 400;
+  font-size: 2.2rem;
+  color: var(--coral);
+}
+
+.admin__hint {
+  color: var(--ink-soft);
+  font-size: 0.95rem;
+}
+
+.admin__logo {
+  height: 74px;
+  width: auto;
+}
+
+/* --- Connexion --- */
+
+.admin--login {
+  place-items: center;
+}
+
+.admin--loading {
+  place-items: center;
+  color: var(--ink-soft);
+}
+
+.admin__login-card {
+  display: grid;
+  justify-items: center;
+  gap: 1.2rem;
+  background: var(--cream);
+  border: 1px solid rgb(33 32 28 / 0.1);
+  border-radius: 18px;
+  padding: 3rem;
+  width: min(92vw, 400px);
+  text-align: center;
+}
+
+/* --- Champs --- */
+
+.admin input,
+.admin textarea {
+  font: inherit;
+  color: var(--ink);
+  background: var(--cream);
+  border: 1px solid rgb(33 32 28 / 0.18);
+  border-radius: 10px;
+  padding: 0.7rem 0.9rem;
+  width: 100%;
+  transition: border-color 0.3s;
+}
+
+.admin input:focus,
+.admin textarea:focus {
+  outline: none;
+  border-color: var(--coral);
+}
+
+.admin__note {
+  display: grid;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+
+.admin__note textarea {
+  resize: vertical;
+  text-transform: none;
+  letter-spacing: normal;
+  font-size: 1rem;
+}
+
+/* --- En-tête --- */
+
+.admin__header {
+  display: flex;
+  align-items: center;
+  gap: 1.6rem;
+  flex-wrap: wrap;
+}
+
+.admin__header-actions {
+  margin-left: auto;
+  display: flex;
+  gap: 0.8rem;
+}
+
+/* --- Boutons --- */
+
+.admin__btn {
+  font-size: 0.8rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  border: 1px solid rgb(33 32 28 / 0.3);
+  border-radius: 999px;
+  padding: 0.65rem 1.4rem;
+  background: transparent;
+  transition: all 0.3s;
+  white-space: nowrap;
+}
+
+.admin__btn:hover {
+  background: var(--ink);
+  color: var(--sand);
+  border-color: var(--ink);
+}
+
+.admin__btn--primary {
+  background: var(--ink);
+  color: var(--sand);
+  border-color: var(--ink);
+}
+
+.admin__btn--primary:hover {
+  background: var(--coral);
+  border-color: var(--coral);
+}
+
+.admin__btn--primary:disabled {
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+.admin__btn--add {
+  justify-self: start;
+  margin-top: 0.4rem;
+}
+
+/* --- Plats --- */
+
+.admin__section {
+  display: grid;
+  gap: 1rem;
+}
+
+.admin__item {
+  display: grid;
+  grid-template-columns: 84px 1fr 110px 40px;
+  align-items: center;
+  gap: 1rem;
+  background: var(--cream);
+  border: 1px solid rgb(33 32 28 / 0.1);
+  border-radius: 14px;
+  padding: 1rem;
+}
+
+.admin__photo {
+  position: relative;
+  width: 84px;
+  height: 84px;
+  border-radius: 10px;
+  overflow: hidden;
+  background: var(--stone);
+  display: grid;
+  place-items: center;
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  cursor: pointer;
+}
+
+.admin__photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.admin__photo::after {
+  content: "Changer";
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  background: rgb(33 32 28 / 0.55);
+  color: var(--cream);
+  font-size: 0.68rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.admin__photo:hover::after {
+  opacity: 1;
+}
+
+.admin__photo input {
+  display: none;
+}
+
+.admin__fields {
+  display: grid;
+  gap: 0.6rem;
+}
+
+.admin__price {
+  text-align: right;
+}
+
+.admin__delete {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid rgb(33 32 28 / 0.2);
+  color: var(--ink-soft);
+  transition: all 0.3s;
+}
+
+.admin__delete:hover {
+  background: #b3432f;
+  border-color: #b3432f;
+  color: var(--cream);
+}
+
+/* --- Pied de page --- */
+
+.admin__footer {
+  position: sticky;
+  bottom: 0;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 1.2rem;
+  padding: 1rem 0;
+  background: linear-gradient(to top, var(--sand) 70%, transparent);
+}
+
+.admin__saved {
+  color: var(--olive);
+  font-weight: 400;
+}
+
+.admin__error {
+  color: #b3432f;
+  font-size: 0.9rem;
+}
+
+@media (max-width: 640px) {
+  .admin__item {
+    grid-template-columns: 64px 1fr 40px;
+  }
+
+  .admin__photo {
+    width: 64px;
+    height: 64px;
+  }
+
+  .admin__price {
+    grid-column: 2;
+    text-align: left;
+  }
+}

@@ -12,6 +12,9 @@ dist
 dist-ssr
 *.local
 
+# Photos uploadées par le restaurateur
+server/uploads
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json

@@ -1,0 +1,74 @@
+{
+  "note": "Une ardoise vivante, réécrite au fil des saisons, des retours de criée et des inspirations du chef.",
+  "sections": [
+    {
+      "title": "Entrées",
+      "items": [
+        {
+          "name": "Houmous & gyoza",
+          "desc": "pois chiche fumé, huile d'olive citronnée",
+          "price": "7",
+          "image": "/images/plat-toast-oeuf.png"
+        },
+        {
+          "name": "Gravlax de saumon",
+          "desc": "gin, betterave, crème raifort",
+          "price": "9",
+          "image": "/images/plat-tataki-thon.png"
+        },
+        {
+          "name": "Planche à partager",
+          "desc": "charcuteries, fromages, fritures",
+          "price": "8 / pers.",
+          "image": "/images/detail-cocktails.png"
+        }
+      ]
+    },
+    {
+      "title": "Plats",
+      "items": [
+        {
+          "name": "Bœuf tigré",
+          "desc": "frites maison, jus corsé aux épices douces",
+          "price": "22,5",
+          "image": "/images/plat-tataki-thon.png"
+        },
+        {
+          "name": "Tentacule de poulpe",
+          "desc": "grillé au charbon, condiment chermoula",
+          "price": "24",
+          "image": "/images/plat-toast-oeuf.png"
+        },
+        {
+          "name": "Risotto chorizo & bodega",
+          "desc": "crémeux, éclats de parmesan",
+          "price": "19,5",
+          "image": "/images/plat-pates-burrata.png"
+        },
+        {
+          "name": "Poulet croustillant teriyaki",
+          "desc": "pain pita, pickles d'oignon, frites maison",
+          "price": "16,5",
+          "image": "/images/plat-poulet-crispy.png"
+        }
+      ]
+    },
+    {
+      "title": "Douceurs",
+      "items": [
+        {
+          "name": "Cheesecake de la maison",
+          "desc": "coulis de fruits rouges, chantilly vanillée",
+          "price": "8,5",
+          "image": "/images/dessert-cheesecake.png"
+        },
+        {
+          "name": "Tarte chocolat signature",
+          "desc": "vagues de ganache, fleur de sel",
+          "price": "9",
+          "image": "/images/equipe-gateau.png"
+        }
+      ]
+    }
+  ]
+}
