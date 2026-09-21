@@ -118,3 +118,13 @@
   border-top: 1px solid rgb(239 232 220 / 0.14);
   padding-top: 1.6rem;
 }
+
+.footer__admin {
+  opacity: 0.55;
+  transition: opacity 0.3s, color 0.3s;
+}
+
+.footer__admin:hover {
+  opacity: 1;
+  color: var(--coral);
+}

@@ -1,4 +1,5 @@
 import { useRef } from "react";
+import { Link } from "react-router-dom";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { RESTAURANT } from "../data.js";
@@ -79,6 +80,9 @@ export default function Footer() {
       <div className="footer__bottom">
         <p>© {new Date().getFullYear()} Dam'Oui — SPQ · Since 2022</p>
         <p>Prix par personne : 20–30 €</p>
+        <Link className="footer__admin" to="/admin">
+          Espace restaurateur
+        </Link>
       </div>
     </footer>
   );
