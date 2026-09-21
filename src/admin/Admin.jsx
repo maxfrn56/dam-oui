@@ -14,13 +14,14 @@ export default function Admin() {
 /* --- Connexion -------------------------------------------- */
 
 function Login({ onSuccess }) {
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
 
   const submit = async (e) => {
     e.preventDefault();
     try {
-      await login(password);
+      await login(email, password);
       onSuccess();
     } catch (err) {
       setError(err.message);
@@ -34,11 +35,19 @@ function Login({ onSuccess }) {
         <h1>Espace restaurateur</h1>
         <p className="admin__hint">Connectez-vous pour modifier la carte.</p>
         <input
+          type="email"
+          placeholder="Adresse e-mail"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          autoComplete="username"
+          autoFocus
+        />
+        <input
           type="password"
           placeholder="Mot de passe"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
-          autoFocus
+          autoComplete="current-password"
         />
         {error && <p className="admin__error">{error}</p>}
         <button type="submit" className="admin__btn admin__btn--primary">

@@ -14,11 +14,11 @@ const authHeaders = () => ({ Authorization: `Bearer ${getToken()}` });
 
 export const getMenu = () => request("/api/menu");
 
-export async function login(password) {
+export async function login(email, password) {
   const { token } = await request("/api/login", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ password }),
+    body: JSON.stringify({ email, password }),
   });
   localStorage.setItem(TOKEN_KEY, token);
 }

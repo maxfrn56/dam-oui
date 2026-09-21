@@ -12,8 +12,8 @@ dist
 dist-ssr
 *.local
 
-# Photos uploadées par le restaurateur
-server/uploads
+# Carte modifiée et photos uploadées par le restaurateur
+server/storage
 
 # Editor directories and files
 .vscode/*

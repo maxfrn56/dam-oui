@@ -26,10 +26,20 @@ Rendez-vous sur `/admin` pour modifier la carte en autonomie : nom, description,
 prix et photo de chaque plat, ajout/suppression de plats, texte d'introduction.
 Les changements sont visibles sur le site dès l'enregistrement.
 
-- Mot de passe par défaut : `damoui2022` — changez-le via la variable
-  d'environnement `ADMIN_PASSWORD` (et définissez `JWT_SECRET` en production).
-- La carte est stockée dans `server/data/menu.json`, les photos uploadées dans
-  `server/uploads/`.
+- Identifiants par défaut : `ferdibakha@icloud.com` / `damoui2022` — modifiables
+  via les variables d'environnement `ADMIN_EMAIL` et `ADMIN_PASSWORD`.
+- La carte et les photos uploadées vivent dans `server/storage/` (initialisé au
+  premier démarrage depuis `server/data/menu.seed.json`).
+
+### Variables d'environnement (production)
+
+| Variable         | Rôle                                                        |
+| ---------------- | ----------------------------------------------------------- |
+| `ADMIN_EMAIL`    | E-mail de connexion à l'espace restaurateur                 |
+| `ADMIN_PASSWORD` | Mot de passe de connexion                                   |
+| `JWT_SECRET`     | Clé de signature des sessions — longue chaîne aléatoire     |
+| `STORAGE_DIR`    | Dossier persistant (carte + photos), ex. point de montage du volume |
+| `PORT`           | Injecté automatiquement par Railway, ne pas définir         |
 
 ## Animations
 
