@@ -3,10 +3,12 @@ import { Link } from "react-router-dom";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { RESTAURANT } from "../data.js";
+import { useBooking } from "../lib/booking.jsx";
 import "./Footer.css";
 
 export default function Footer() {
   const root = useRef(null);
+  const { openBooking } = useBooking();
 
   useGSAP(
     () => {
@@ -68,12 +70,12 @@ export default function Footer() {
         </div>
 
         <div className="footer__col footer__col--cta">
-          <a className="footer__reserve" href={RESTAURANT.phoneHref} data-cursor="view">
+          <button className="footer__reserve" type="button" onClick={openBooking} data-cursor="view">
             <span>Réserver une table</span>
             <svg viewBox="0 0 24 24" aria-hidden="true">
               <path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" strokeWidth="1.5" />
             </svg>
-          </a>
+          </button>
         </div>
       </div>
 

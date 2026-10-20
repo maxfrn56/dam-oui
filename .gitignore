@@ -11,6 +11,7 @@ node_modules
 dist
 dist-ssr
 *.local
+.env
 
 # Carte modifiée et photos uploadées par le restaurateur
 server/storage

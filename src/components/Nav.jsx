@@ -2,7 +2,7 @@ import { useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
-import { RESTAURANT } from "../data.js";
+import { useBooking } from "../lib/booking.jsx";
 import "./Nav.css";
 
 const LINKS = [
@@ -14,6 +14,7 @@ const LINKS = [
 
 export default function Nav({ ready }) {
   const root = useRef(null);
+  const { openBooking } = useBooking();
 
   useGSAP(
     () => {
@@ -56,9 +57,9 @@ export default function Nav({ ready }) {
             </li>
           ))}
         </ul>
-        <a className="nav__cta" href={RESTAURANT.phoneHref}>
+        <button className="nav__cta" type="button" onClick={openBooking}>
           Réserver
-        </a>
+        </button>
       </nav>
     </header>
   );

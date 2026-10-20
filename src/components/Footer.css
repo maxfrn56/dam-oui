@@ -95,6 +95,8 @@
   border-bottom: 1px solid var(--coral);
   padding-bottom: 0.5rem;
   width: fit-content;
+  background: none;
+  color: inherit;
 }
 
 .footer__reserve svg {

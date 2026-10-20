@@ -1,17 +1,23 @@
 import { useEffect, useState } from "react";
 import { getMenu, getToken, clearToken, login, saveMenu, uploadImage } from "../lib/api.js";
+import Reservations from "./Reservations.jsx";
+import Planning from "./Planning.jsx";
 import "./Admin.css";
+
+const TABS = [
+  { id: "reservations", label: "Réservations" },
+  { id: "planning", label: "Planning" },
+  { id: "menu", label: "La carte" },
+];
 
 export default function Admin() {
   const [authed, setAuthed] = useState(Boolean(getToken()));
   return authed ? (
-    <Editor onLogout={() => { clearToken(); setAuthed(false); }} />
+    <Dashboard onLogout={() => { clearToken(); setAuthed(false); }} />
   ) : (
     <Login onSuccess={() => setAuthed(true)} />
   );
 }
-
-/* --- Connexion -------------------------------------------- */
 
 function Login({ onSuccess }) {
   const [email, setEmail] = useState("");
@@ -33,7 +39,7 @@ function Login({ onSuccess }) {
       <form className="admin__login-card" onSubmit={submit}>
         <img src="/images/logo-dark.png" alt="Dam'Oui" className="admin__logo" />
         <h1>Espace restaurateur</h1>
-        <p className="admin__hint">Connectez-vous pour modifier la carte.</p>
+        <p className="admin__hint">Connectez-vous pour gérer la carte et les réservations.</p>
         <input
           type="email"
           placeholder="Adresse e-mail"
@@ -58,11 +64,49 @@ function Login({ onSuccess }) {
   );
 }
 
-/* --- Éditeur de carte -------------------------------------- */
+function Dashboard({ onLogout }) {
+  const [tab, setTab] = useState("reservations");
 
-function Editor({ onLogout }) {
+  return (
+    <div className="admin">
+      <header className="admin__header">
+        <img src="/images/logo-dark.png" alt="Dam'Oui" className="admin__logo" />
+        <div>
+          <h1>Espace restaurateur</h1>
+          <p className="admin__hint">Réservations, planning et carte — mis à jour sur le site dès l'enregistrement.</p>
+        </div>
+        <div className="admin__header-actions">
+          <a href="/" target="_blank" rel="noreferrer" className="admin__btn">
+            Voir le site
+          </a>
+          <button onClick={onLogout} className="admin__btn">
+            Déconnexion
+          </button>
+        </div>
+      </header>
+
+      <nav className="admin__tabs">
+        {TABS.map((item) => (
+          <button
+            key={item.id}
+            className={tab === item.id ? "is-active" : ""}
+            onClick={() => setTab(item.id)}
+          >
+            {item.label}
+          </button>
+        ))}
+      </nav>
+
+      {tab === "reservations" && <Reservations />}
+      {tab === "planning" && <Planning />}
+      {tab === "menu" && <MenuEditor />}
+    </div>
+  );
+}
+
+function MenuEditor() {
   const [menu, setMenu] = useState(null);
-  const [status, setStatus] = useState(null); // null | "saving" | "saved" | message d'erreur
+  const [status, setStatus] = useState(null);
 
   useEffect(() => {
     getMenu().then(setMenu).catch((err) => setStatus(err.message));
@@ -115,29 +159,10 @@ function Editor({ onLogout }) {
     }
   };
 
-  if (!menu) return <div className="admin admin--loading">Chargement…</div>;
+  if (!menu) return <p className="admin__hint">Chargement de la carte…</p>;
 
   return (
-    <div className="admin">
-      <header className="admin__header">
-        <img src="/images/logo-dark.png" alt="Dam'Oui" className="admin__logo" />
-        <div>
-          <h1>La carte</h1>
-          <p className="admin__hint">
-            Modifiez vos plats puis cliquez sur « Enregistrer » : le site est mis à jour
-            immédiatement.
-          </p>
-        </div>
-        <div className="admin__header-actions">
-          <a href="/" target="_blank" rel="noreferrer" className="admin__btn">
-            Voir le site
-          </a>
-          <button onClick={onLogout} className="admin__btn">
-            Déconnexion
-          </button>
-        </div>
-      </header>
-
+    <>
       <label className="admin__note">
         <span>Texte d'introduction de l'ardoise</span>
         <textarea
@@ -150,7 +175,6 @@ function Editor({ onLogout }) {
       {menu.sections.map((section, sIdx) => (
         <section className="admin__section" key={section.title}>
           <h2>{section.title}</h2>
-
           {section.items.map((item, iIdx) => (
             <article className="admin__item" key={iIdx}>
               <label className="admin__photo">
@@ -161,7 +185,6 @@ function Editor({ onLogout }) {
                   onChange={(e) => changePhoto(sIdx, iIdx, e.target.files[0])}
                 />
               </label>
-
               <div className="admin__fields">
                 <input
                   placeholder="Nom du plat"
@@ -174,24 +197,17 @@ function Editor({ onLogout }) {
                   onChange={(e) => updateItem(sIdx, iIdx, { desc: e.target.value })}
                 />
               </div>
-
               <input
                 className="admin__price"
                 placeholder="Prix"
                 value={item.price}
                 onChange={(e) => updateItem(sIdx, iIdx, { price: e.target.value })}
               />
-
-              <button
-                className="admin__delete"
-                onClick={() => removeItem(sIdx, iIdx)}
-                title="Supprimer ce plat"
-              >
+              <button className="admin__delete" onClick={() => removeItem(sIdx, iIdx)} title="Supprimer ce plat">
                 ✕
               </button>
             </article>
           ))}
-
           <button className="admin__btn admin__btn--add" onClick={() => addItem(sIdx)}>
             + Ajouter un plat
           </button>
@@ -203,14 +219,10 @@ function Editor({ onLogout }) {
         {status && status !== "saving" && status !== "saved" && (
           <p className="admin__error">{status}</p>
         )}
-        <button
-          className="admin__btn admin__btn--primary"
-          onClick={save}
-          disabled={status === "saving"}
-        >
+        <button className="admin__btn admin__btn--primary" onClick={save} disabled={status === "saving"}>
           {status === "saving" ? "Enregistrement…" : "Enregistrer la carte"}
         </button>
       </footer>
-    </div>
+    </>
   );
 }

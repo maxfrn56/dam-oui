@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { SplitText } from "gsap/SplitText";
@@ -14,14 +14,19 @@ import Menu from "./components/Menu.jsx";
 import Gallery from "./components/Gallery.jsx";
 import Reviews from "./components/Reviews.jsx";
 import Footer from "./components/Footer.jsx";
+import BookingModal from "./components/Booking.jsx";
+import { BookingProvider, useBooking } from "./lib/booking.jsx";
 
 gsap.registerPlugin(ScrollTrigger, SplitText);
 
-export default function App() {
+function Site() {
   const [ready, setReady] = useState(false);
+  const { open } = useBooking();
+  const lenisRef = useRef(null);
 
   useEffect(() => {
     const lenis = new Lenis({ lerp: 0.1, smoothWheel: true });
+    lenisRef.current = lenis;
     lenis.on("scroll", ScrollTrigger.update);
 
     const raf = (time) => lenis.raf(time * 1000);
@@ -33,6 +38,12 @@ export default function App() {
       lenis.destroy();
     };
   }, []);
+
+  useEffect(() => {
+    if (!lenisRef.current) return;
+    if (open) lenisRef.current.stop();
+    else lenisRef.current.start();
+  }, [open]);
 
   return (
     <>
@@ -48,6 +59,15 @@ export default function App() {
         <Reviews />
       </main>
       <Footer />
+      <BookingModal />
     </>
+  );
+}
+
+export default function App() {
+  return (
+    <BookingProvider>
+      <Site />
+    </BookingProvider>
   );
 }

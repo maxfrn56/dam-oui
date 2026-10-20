@@ -1,0 +1,27 @@
+{
+  "weeklyClosedDays": [],
+  "exceptionalClosures": [],
+  "blockedSlots": [],
+  "slotCapacities": {},
+  "maxCovers": 10,
+  "horizonDays": 60,
+  "minAdvanceMinutes": 30,
+  "services": [
+    {
+      "id": "midi",
+      "label": "Midi",
+      "start": "12:00",
+      "end": "14:30",
+      "interval": 15,
+      "capacity": 20
+    },
+    {
+      "id": "soir",
+      "label": "Soir",
+      "start": "18:30",
+      "end": "21:30",
+      "interval": 15,
+      "capacity": 24
+    }
+  ]
+}

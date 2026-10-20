@@ -7,6 +7,9 @@
  * - ADMIN_PASSWORD  (défaut "damoui2022")
  * - JWT_SECRET      (obligatoire en production)
  * - STORAGE_DIR     (défaut server/storage — pointer vers le volume persistant)
+ * - RESEND_API_KEY  (clé Resend pour les e-mails de réservation)
+ * - RESEND_FROM     (expéditeur vérifié, ex. "Dam'Oui <reservations@domaine.fr>")
+ * - RESEND_NOTIFY_EMAIL (destinataire restaurateur, défaut ADMIN_EMAIL)
  */
 import express from "express";
 import multer from "multer";
@@ -14,6 +17,7 @@ import jwt from "jsonwebtoken";
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { createBookingStore, registerBookingRoutes } from "./booking.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -93,6 +97,13 @@ const upload = multer({
 app.post("/api/upload", requireAuth, upload.single("image"), (req, res) => {
   if (!req.file) return res.status(400).json({ error: "Image invalide (jpeg, png, webp, avif — 8 Mo max)" });
   res.json({ url: `/uploads/${req.file.filename}` });
+});
+
+/* --- Réservations ------------------------------------------ */
+
+registerBookingRoutes(app, {
+  requireAuth,
+  store: createBookingStore(STORAGE_DIR),
 });
 
 /* --- Site buildé (production) ------------------------------ */

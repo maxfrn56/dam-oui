@@ -2,7 +2,7 @@
   min-height: 100svh;
   background: var(--sand);
   padding: clamp(1.5rem, 4vw, 4rem);
-  max-width: 980px;
+  max-width: 1080px;
   margin: 0 auto;
   display: grid;
   gap: 2.5rem;
@@ -59,7 +59,8 @@
 /* --- Champs --- */
 
 .admin input,
-.admin textarea {
+.admin textarea,
+.admin select {
   font: inherit;
   color: var(--ink);
   background: var(--cream);
@@ -105,6 +106,153 @@
   margin-left: auto;
   display: flex;
   gap: 0.8rem;
+}
+
+.admin__tabs {
+  display: flex;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+  border-bottom: 1px solid rgb(33 32 28 / 0.12);
+  padding-bottom: 0.2rem;
+}
+
+.admin__tabs button {
+  padding: 0.7rem 1.1rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  color: var(--ink-soft);
+  border-bottom: 2px solid transparent;
+}
+
+.admin__tabs button.is-active {
+  color: var(--ink);
+  border-bottom-color: var(--coral);
+}
+
+.admin__toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.admin__seg {
+  display: flex;
+  background: var(--cream);
+  border-radius: 999px;
+  padding: 0.2rem;
+  border: 1px solid rgb(33 32 28 / 0.1);
+}
+
+.admin__seg button {
+  border-radius: 999px;
+  padding: 0.4rem 0.9rem;
+  font-size: 0.8rem;
+}
+
+.admin__seg button.is-active {
+  background: var(--ink);
+  color: var(--cream);
+}
+
+.resa-list,
+.planning__closures,
+.planning__slots {
+  list-style: none;
+  display: grid;
+  gap: 0.7rem;
+}
+
+.resa {
+  display: grid;
+  grid-template-columns: 90px 1fr 1fr auto;
+  gap: 1rem;
+  align-items: center;
+  background: var(--cream);
+  border: 1px solid rgb(33 32 28 / 0.1);
+  border-radius: 14px;
+  padding: 1rem 1.1rem;
+}
+
+.resa.is-cancelled {
+  opacity: 0.55;
+}
+
+.resa__when,
+.resa__who,
+.resa__contact {
+  display: grid;
+  gap: 0.2rem;
+}
+
+.resa__contact a {
+  font-size: 0.85rem;
+  color: var(--ink-soft);
+}
+
+.planning__days {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.planning__days label {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  border: 1px solid rgb(33 32 28 / 0.18);
+  border-radius: 999px;
+  padding: 0.45rem 0.9rem;
+  background: var(--cream);
+}
+
+.planning__days label.is-on {
+  background: var(--ink);
+  color: var(--cream);
+  border-color: var(--ink);
+}
+
+.planning__closures li,
+.planning__slots li {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  background: var(--cream);
+  border-radius: 12px;
+  padding: 0.7rem 0.9rem;
+}
+
+.planning__slots li {
+  display: grid;
+  grid-template-columns: 70px 1fr 70px 90px auto;
+  align-items: center;
+}
+
+.planning__service {
+  display: grid;
+  grid-template-columns: 1.2fr repeat(4, 1fr);
+  gap: 0.7rem;
+  background: var(--cream);
+  border-radius: 14px;
+  padding: 1rem;
+}
+
+.planning__service label {
+  display: grid;
+  gap: 0.3rem;
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+
+@media (max-width: 760px) {
+  .resa,
+  .planning__slots li,
+  .planning__service {
+    grid-template-columns: 1fr;
+  }
 }
 
 /* --- Boutons --- */

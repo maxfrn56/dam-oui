@@ -1,0 +1,249 @@
+.booking {
+  position: fixed;
+  inset: 0;
+  z-index: 90;
+  display: grid;
+  place-items: center;
+  padding: 1.2rem;
+  cursor: auto;
+}
+
+.booking__backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgb(33 32 28 / 0.62);
+  backdrop-filter: blur(8px);
+  border: 0;
+}
+
+.booking__panel {
+  position: relative;
+  width: min(100%, 460px);
+  max-height: min(92svh, 760px);
+  overflow: auto;
+  background: var(--cream);
+  color: var(--ink);
+  border-radius: 22px;
+  padding: 1.6rem 1.5rem 1.4rem;
+  display: grid;
+  gap: 1.1rem;
+}
+
+.booking__head {
+  display: grid;
+  justify-items: center;
+  gap: 0.25rem;
+  text-align: center;
+}
+
+.booking__head .label {
+  color: var(--coral);
+}
+
+.booking__head h2 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: 1.8rem;
+}
+
+.booking__close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid rgb(33 32 28 / 0.15);
+}
+
+.booking__steps {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  list-style: none;
+  font-size: 0.68rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--stone);
+  text-align: center;
+}
+
+.booking__steps .is-active,
+.booking__steps .is-done {
+  color: var(--ink);
+}
+
+.booking__error {
+  background: #f4e4de;
+  color: #8a2f22;
+  border-radius: 10px;
+  padding: 0.7rem 0.9rem;
+  font-size: 0.9rem;
+}
+
+.booking__body,
+.booking__success {
+  display: grid;
+  gap: 1rem;
+}
+
+.booking__covers {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--sand);
+  border-radius: 12px;
+  padding: 0.7rem 1rem;
+}
+
+.booking__covers > div {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.booking__covers button {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 1px solid rgb(33 32 28 / 0.2);
+}
+
+.booking__cal-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: var(--font-display);
+  text-transform: capitalize;
+}
+
+.booking__cal-nav button,
+.booking__ghost {
+  border: 1px solid rgb(33 32 28 / 0.2);
+  border-radius: 999px;
+  padding: 0.4rem 0.9rem;
+}
+
+.booking__week,
+.booking__grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 0.3rem;
+  text-align: center;
+}
+
+.booking__week {
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--stone);
+}
+
+.booking__day {
+  aspect-ratio: 1;
+  border-radius: 50%;
+  font-size: 0.9rem;
+}
+
+.booking__day.is-closed,
+.booking__day.is-full,
+.booking__day:disabled {
+  color: var(--stone);
+  opacity: 0.4;
+}
+
+.booking__day.is-selected,
+.booking__times button.is-selected {
+  background: var(--ink);
+  color: var(--cream);
+}
+
+.booking__chosen {
+  font-family: var(--font-display);
+  font-style: italic;
+  text-transform: capitalize;
+}
+
+.booking__muted {
+  color: var(--ink-soft);
+  font-size: 0.92rem;
+}
+
+.booking__service h3 {
+  font-family: var(--font-script);
+  font-weight: 400;
+  font-size: 1.6rem;
+  color: var(--coral);
+  margin-bottom: 0.5rem;
+}
+
+.booking__times {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+}
+
+.booking__times button {
+  min-width: 72px;
+  border: 1px solid rgb(33 32 28 / 0.2);
+  border-radius: 999px;
+  padding: 0.45rem 0.7rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.booking__times button:disabled {
+  opacity: 0.35;
+}
+
+.booking__fields {
+  display: grid;
+  gap: 0.6rem;
+}
+
+.booking__fields input {
+  font: inherit;
+  background: var(--sand);
+  border: 1px solid rgb(33 32 28 / 0.16);
+  border-radius: 10px;
+  padding: 0.75rem 0.9rem;
+}
+
+.booking__fields input:focus {
+  outline: none;
+  border-color: var(--coral);
+}
+
+.booking__actions {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.8rem;
+}
+
+.booking__next {
+  background: var(--ink);
+  color: var(--cream);
+  border-radius: 999px;
+  padding: 0.85rem 1.4rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-size: 0.78rem;
+}
+
+.booking__next:disabled {
+  opacity: 0.45;
+}
+
+.booking__success {
+  text-align: center;
+  padding: 0.5rem 0 0.2rem;
+}
+
+.booking__script {
+  font-family: var(--font-script);
+  font-size: 2.6rem;
+  color: var(--coral);
+}
+
+html.booking-open,
+html.booking-open body {
+  overflow: hidden;
+}
